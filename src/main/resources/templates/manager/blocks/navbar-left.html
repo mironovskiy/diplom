@@ -1,0 +1,26 @@
+<div th:fragment="navbar-left">
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav slimscrollsidebar">
+            <h2 style="margin-top: 10px; text-align: center">Навигация</h2>
+            <div class="user-profile">
+                <div class="dropdown user-pro-body">
+                    <div><img src="/static/resources/plugins/images/users/varun2.jpg" alt="user-img" class="img-circle"></div>
+                    <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${accountData.getSurname() + ' ' + accountData.getName()}"><span class="caret"></span></a>
+                    <ul class="dropdown-menu animated flipInY">
+                        <li><a href="/manager/profile"><i class="ti-user"></i> Профиль</a></li>
+                        <li><a href="/manager/profile"><i class="ti-settings"></i> Настройки профиля</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/auth"><i class="fa fa-power-off"></i> Выйти</a></li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="nav" id="side-menu">
+                <li><a href="/manager" class="waves-effect active"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Главная страница </span></a> </li>
+                <li><a href="/manager/profile"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Профиль </span></a> </li>
+                <li><a href="/manager/subordinates" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Подчиненные </span></a> </li>
+                <li><a href="/manager/efficiency" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Оценка эффективности </span></a> </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

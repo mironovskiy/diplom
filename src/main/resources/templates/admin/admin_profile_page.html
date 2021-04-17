@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+    <title>Admin page</title>
+    <link href="/static/resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/resources/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <link href="/static/resources/css/animate.css" rel="stylesheet">
+    <link href="/static/resources/css/style.css" rel="stylesheet">
+    <link href="/static/resources/css/colors/default.css" id="theme" rel="stylesheet">
+</head>
+<body class="fix-sidebar">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+    </div>
+    <div id="wrapper">
+        <div th:insert="admin/blocks/navbar-top :: navbar-top"></div>
+        <div th:insert="admin/blocks/navbar-left :: navbar-left"></div>
+
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Профиль</h4>
+                    </div>
+                </div>
+                <!-- .row -->
+                <div class="row">
+                  <div class="col-md-12">
+                      <div class="white-box">
+                          <ul class="nav nav-tabs tabs customtab">
+                              <!-- <li class="active tab">
+                                  <a href="#home" data-toggle="tab"> <span class="visible-xs"><i class="fa fa-home"></i></span> <span class="hidden-xs">Activity</span> </a>
+                              </li> -->
+                              <li class="tab active">
+                                  <a href="#profile" data-toggle="tab"> <span class="visible-xs"><i class="fa fa-user"></i></span> <span class="hidden-xs">Профиль</span> </a>
+                              </li>
+                              <!-- <li class="tab">
+                                  <a href="#messages" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> <span class="hidden-xs">Messages</span> </a>
+                              </li> -->
+                              <li class="tab">
+                                  <a href="#settings" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="fa fa-cog"></i></span> <span class="hidden-xs">Настройки</span> </a>
+                              </li>
+                          </ul>
+                          <div class="tab-content">
+                              <div class="tab-pane active" id="profile">
+                                  <div class="row">
+                                      <div class="col-md-3 col-xs-6 b-r"> <strong>Логин</strong>
+                                          <br>
+                                          <p class="text-muted" th:text="${accountData.getUsersByUserId().getLogin()}"></p>
+                                      </div>
+                                      <div class="col-md-3 col-xs-6 b-r"> <strong>Полное имя</strong>
+                                          <br>
+                                          <p class="text-muted" th:text="${accountData.getSurname() + ' ' + accountData.getName()}"></p>
+                                      </div>
+                                      <div class="col-md-3 col-xs-6 b-r"> <strong>Роль</strong>
+                                          <br>
+                                          <p class="text-muted">admin</p>
+                                      </div>
+                                      <div class="col-md-3 col-xs-6"> <strong>Email</strong>
+                                          <br>
+                                          <p class="text-muted" th:text="${accountData.getEmail()}"></p>
+                                      </div>
+                                  </div>
+                                  <hr>
+                                  <h4 class="font-bold m-t-30">Навыки</h4>
+                                  <hr>
+                                  <h5>Wordpress <span class="pull-right">80%</span></h5>
+                                  <div class="progress">
+                                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%;"> <span class="sr-only">50% Complete</span> </div>
+                                  </div>
+                                  <h5>HTML 5 <span class="pull-right">90%</span></h5>
+                                  <div class="progress">
+                                      <div class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%;"> <span class="sr-only">50% Complete</span> </div>
+                                  </div>
+                                  <h5>jQuery <span class="pull-right">50%</span></h5>
+                                  <div class="progress">
+                                      <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%;"> <span class="sr-only">50% Complete</span> </div>
+                                  </div>
+                                  <h5>Photoshop <span class="pull-right">70%</span></h5>
+                                  <div class="progress">
+                                      <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%;"> <span class="sr-only">50% Complete</span> </div>
+                                  </div>
+                              </div>
+
+                              <div class="tab-pane" id="settings">
+                                  <form class="form-horizontal form-material" method="post">
+                                      <div class="form-group">
+                                          <label class="col-md-12">Фамилия</label>
+                                          <div class="col-md-12">
+                                              <input type="text" th:placeholder="${accountData.getSurname()}" class="form-control form-control-line" name="surname"> </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <label class="col-md-12">Имя</label>
+                                          <div class="col-md-12">
+                                              <input type="text" th:placeholder="${accountData.getName()}" class="form-control form-control-line" name="name"> </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="example-email" class="col-md-12">Email</label>
+                                          <div class="col-md-12">
+                                              <input type="email" th:placeholder="${accountData.getEmail()}" class="form-control form-control-line" name="email" id="example-email"> </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <label class="col-md-12">Password</label>
+                                          <div class="col-md-12">
+                                              <input type="password" placeholder="Пароль" class="form-control form-control-line" name="password"> </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="col-sm-12">
+                                              <button class="btn btn-success" type="submit">Обновить данные</button>
+                                          </div>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+
+            <div th:insert="admin/blocks/footer :: footer"></div>
+        </div>
+    </div>
+    <div th:insert="admin/blocks/scripts :: scripts"></div>
+</body>
+</html>

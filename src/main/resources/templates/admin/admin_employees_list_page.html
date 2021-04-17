@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin page</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/resources/plugins/images/favicon.png">
+    <link href="/static/resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/resources/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <link href="/static/resources/css/animate.css" rel="stylesheet">
+    <link href="/static/resources/css/style.css" rel="stylesheet">
+    <link href="/static/resources/css/colors/default.css" id="theme" rel="stylesheet">
+</head>
+<body class="fix-sidebar">
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+</div>
+<div id="wrapper">
+    <div th:insert="admin/blocks/navbar-top :: navbar-top"></div>
+    <div th:insert="admin/blocks/navbar-left :: navbar-left"></div>
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row bg-title">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <h4 class="page-title">Сотрудники</h4>
+                </div>
+            </div>
+            <!-- .row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="white-box">
+                        <h3 class="box-title">Список сотрудников</h3>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" th:each="employee : ${employees}">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" th:text="${employee.getId()}"> </div>
+
+                            <div class="panel-wrapper collapse in">
+                                <div class="panel-body">
+                                    <div class="tab-pane" id="settings">
+                                        <form class="form-horizontal form-material" method="post">
+                                            <div class="form-group">
+                                                <label class="col-md-12">Фамилия</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" th:value="${employee.getSurname()}" class="form-control form-control-line" name="surname" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12">Имя</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" th:value="${employee.getName()}" class="form-control form-control-line" name="name" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12">Логин</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" th:value="${employee.getUsersByUserId().getLogin()}" class="form-control form-control-line" name="login" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="example-email" class="col-md-12">Email</label>
+                                                <div class="col-md-12">
+                                                    <input type="email" th:value="${employee.getEmail()}" class="form-control form-control-line" name="email" id="example-email" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12">Зарплата</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" th:value="${employee.getSalary()}" class="form-control form-control-line" name="salary"> </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-12" th:text="${'Роль (Текущее значение: ' + employee.getUsersByUserId().getRolesByRoleId().getRole() + ')'}"> </label>
+                                                <div class="col-sm-12">
+                                                    <select class="form-control form-control-line" name="role" th:value="${employee.getUsersByUserId().getRolesByRoleId().getRole()}">
+                                                        <option>admin</option>
+                                                        <option>employee</option>
+                                                        <option>manager</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-12" th:text="${'Отдел (Текущее значение: ' + employee.getDepartmentsByDepartmentId().getName() + ')'}"></label>
+                                                <div class="col-sm-12">
+                                                    <select class="form-control form-control-line" name="department">
+                                                        <option th:each="department : ${departments}" th:text="${department.getName()}"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <button class="btn btn-success" type="submit">Сохранить изменения</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div th:insert="admin/blocks/footer :: footer"></div>
+    </div>
+</div>
+<div th:insert="admin/blocks/scripts :: scripts"></div>
+</body>
+</html>

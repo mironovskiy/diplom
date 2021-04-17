@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/resources/plugins/images/favicon.png">
+    <title>Manager page</title>
+    <link href="/static/resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/resources/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <link href="/static/resources/css/animate.css" rel="stylesheet">
+    <link href="/static/resources/css/style.css" rel="stylesheet">
+    <link href="/static/resources/css/colors/default.css" id="theme" rel="stylesheet">
+</head>
+<body class="fix-sidebar">
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+</div>
+<div id="wrapper">
+    <div th:insert="manager/blocks/navbar-top :: navbar-top"></div>
+    <div th:insert="manager/blocks/navbar-left :: navbar-left"></div>
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row bg-title">
+                <!-- .page title -->
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <h4 class="page-title">Подчиненные</h4>
+                </div>
+            </div>
+            <!-- .row -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default">
+                    <!--                            <div class="panel-heading">Panel with Tables</div>-->
+                    <div class="panel-wrapper collapse in">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th>Фамилия</th>
+                                <th>Имя</th>
+                                <th>Эффективность</th>
+                            </tr>
+                            </thead>
+                            <tbody th:each="subordinate : ${subordinates}">
+                            <tr >
+                                <td align="center" th:text="${subordinate.key.getId()}"></td>
+                                <td th:text="${subordinate.key.getSurname()}"></td>
+                                <td th:text="${subordinate.key.getName()}"></td>
+                                <td th:text="${subordinate.value}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:insert="admin/blocks/footer :: footer"></div>
+    </div>
+</div>
+<div th:insert="admin/blocks/scripts :: scripts"></div>
+</body>
+</html>

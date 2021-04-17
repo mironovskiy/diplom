@@ -1,0 +1,49 @@
+<div th:fragment="navbar-top">
+    <nav class="navbar navbar-default navbar-static-top m-b-0">
+        <div class="navbar-header">
+            <div class="top-left-part">
+                <a class="logo" href="index.html">
+                    <img src="/static/resources/plugins/images/admin-logo.png" alt="home" class="dark-logo" />
+                    <img src="/static/resources/plugins/images/admin-logo-dark.png" alt="home" class="light-logo" />
+                </b>
+                    <span class="hidden-xs">
+                        <img src="/static/resources/plugins/images/admin-text.png" alt="home" class="dark-logo" />
+                        <img src="/static/resources/plugins/images/admin-text-dark.png" alt="home" class="light-logo" />
+                    </span>
+                </a>
+            </div>
+            <ul class="nav navbar-top-links navbar-left">
+                <li>
+                    <a href="javascript:void(0)" class="open-close waves-effect waves-light"><i class="ti-menu"></i></a>
+                </li>
+                <li class="mega-dropdown">
+                    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><span class="hidden-xs">Manager</span> </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-top-links navbar-right pull-right">
+                <li>
+                    <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
+                        <input type="text" placeholder="Поиск..." class="form-control">
+                        <a href=""><i class="fa fa-search"></i></a>
+                    </form>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="/static/resources/plugins/images/users/varun2.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs" th:text="${accountData.getSurname()}"></b><span class="caret"></span> </a>
+                    <ul class="dropdown-menu dropdown-user animated flipInY">
+                        <li>
+                            <div class="dw-user-box">
+                                <div class="u-img"><img src="/static/resources/plugins/images/users/varun2.jpg" alt="user" /></div>
+                                <div class="u-text"><h4 th:text="${accountData.getSurname() + ' ' + accountData.getName()}" ></h4><p class="text-muted" th:text="${accountData.getEmail()}"></p><a href="/manager/profile" class="btn btn-rounded btn-danger btn-sm">Открыть профиль</a></div>
+                            </div>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/manager/profile"><i class="ti-user"></i> Профиль</a></li>
+                        <li><a href="/manager/profile"><i class="ti-settings"></i> Настройки профиля</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/auth"><i class="fa fa-power-off"></i> Выйти</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
